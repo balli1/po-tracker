@@ -4,9 +4,10 @@ import {
     ConfirmSourceCode,
     HdrStatus,
     LineStatus,
-    PurchaseOrder,
     WorkStatus,
   } from "../types/purchaseOrder";
+  
+  import type { PurchaseOrder } from "../types/purchaseOrder";
   
   export const mockPurchaseOrders: PurchaseOrder[] = [
     {

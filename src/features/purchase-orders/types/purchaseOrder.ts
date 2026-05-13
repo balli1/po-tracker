@@ -46,15 +46,15 @@ export interface Comment {
 }
 
 export interface PurchaseOrderLine {
-    vendorCatalogId: string,
-    lineNumber: number, 
-    description: string,
-    quantity: number,
-    unitPrice: number,
-    respondedDateTime: Date,
-    hdrStatus?: HdrStatus, 
-    lineStatus?: LineStatus,
-    shipDate: Date,
+    vendorCatalogId: string;
+    lineNumber: number;
+    description: string;
+    quantity: number;
+    unitPrice: number;
+    respondedDateTime: Date;
+    hdrStatus?: HdrStatus;
+    lineStatus?: LineStatus;
+    shipDate: Date;
 }
 
 export interface PurchaseOrder {
@@ -77,5 +77,4 @@ export interface PurchaseOrder {
     lines: PurchaseOrderLine[];
 
     workStatus?: WorkStatus;
-
 }

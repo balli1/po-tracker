@@ -1,5 +1,5 @@
 import { mockPurchaseOrders } from "../mock/purchaseOrders";
-import { PurchaseOrder } from "../types/purchaseOrder";
+import type { PurchaseOrder } from "../types/purchaseOrder";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
