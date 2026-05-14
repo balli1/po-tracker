@@ -12,7 +12,7 @@ import {
   export const mockPurchaseOrders: PurchaseOrder[] = [
     {
       poNumber: "7026023612",
-      poDate: "2026-05-01",
+      poDate: "2026-05-14T08:45:00",
       vendorName: "Cardinal Health",
       businessUnit: BusinessUnit.PCORP,
       confirmCode: ConfirmCode.NEEDS_ATTENTION,
@@ -48,7 +48,7 @@ import {
   
     {
       poNumber: "7026023659",
-      poDate: "2026-05-02",
+      poDate: "2026-05-14T10:20:00",
       vendorName: "GE Healthcare",
       businessUnit: BusinessUnit.PMAN1,
       confirmCode: ConfirmCode.CONFIRMED,
@@ -117,7 +117,7 @@ import {
   
     {
       poNumber: "7026023720",
-      poDate: "2026-05-03",
+      poDate: "2026-05-13T13:15:00",
       vendorName: "Medline Industries",
       businessUnit: BusinessUnit.PSIUH,
       confirmCode: ConfirmCode.UNCONFIRMED,
@@ -142,7 +142,7 @@ import {
   
     {
       poNumber: "7026023788",
-      poDate: "2026-05-04",
+      poDate: "2026-05-12T09:30:00",
       vendorName: "McKesson Medical",
       businessUnit: BusinessUnit.PLHH1,
       confirmCode: ConfirmCode.ITEM_REJECTED,
@@ -189,7 +189,7 @@ import {
   
     {
       poNumber: "7026023855",
-      poDate: "2026-05-05",
+      poDate: "2026-05-11T15:40:00",
       vendorName: "Baxter Healthcare",
       businessUnit: BusinessUnit.PCORP,
       confirmCode: ConfirmCode.NEEDS_ATTENTION,
@@ -247,7 +247,7 @@ import {
   
     {
       poNumber: "7026023912",
-      poDate: "2026-05-06",
+      poDate: "2026-05-10T11:05:00",
       vendorName: "Stryker",
       businessUnit: BusinessUnit.PMAN1,
       confirmCode: ConfirmCode.CONFIRMED,
@@ -283,7 +283,7 @@ import {
   
     {
       poNumber: "7026023999",
-      poDate: "2026-05-07",
+      poDate: "2026-05-09T14:25:00",
       vendorName: "Philips Healthcare",
       businessUnit: BusinessUnit.PLHH1,
       confirmCode: ConfirmCode.CONFIRMED,
@@ -319,7 +319,7 @@ import {
   
     {
       poNumber: "7026024044",
-      poDate: "2026-05-08",
+      poDate: "2026-05-08T08:10:00",
       vendorName: "Owens & Minor",
       businessUnit: BusinessUnit.PSIUH,
       confirmCode: ConfirmCode.UNCONFIRMED,
@@ -344,7 +344,7 @@ import {
   
     {
       poNumber: "7026024120",
-      poDate: "2026-05-09",
+      poDate: "2026-05-06T16:35:00",
       vendorName: "Siemens Healthineers",
       businessUnit: BusinessUnit.PCORP,
       confirmCode: ConfirmCode.ITEM_REJECTED,
@@ -424,7 +424,7 @@ import {
   
     {
       poNumber: "7026024188",
-      poDate: "2026-05-10",
+      poDate: "2026-05-03T10:50:00",
       vendorName: "Henry Schein",
       businessUnit: BusinessUnit.PMAN1,
       confirmCode: ConfirmCode.CONFIRMED,
@@ -460,7 +460,7 @@ import {
   
     {
       poNumber: "7026024266",
-      poDate: "2026-05-11",
+      poDate: "2026-04-11T12:15:00",
       vendorName: "Boston Scientific",
       businessUnit: BusinessUnit.PSIUH,
       confirmCode: ConfirmCode.NEEDS_ATTENTION,
@@ -507,7 +507,7 @@ import {
   
     {
       poNumber: "7026024333",
-      poDate: "2026-05-12",
+      poDate: "2026-04-10T09:05:00",
       vendorName: "Abbott Laboratories",
       businessUnit: BusinessUnit.PLHH1,
       confirmCode: ConfirmCode.CONFIRMED,
