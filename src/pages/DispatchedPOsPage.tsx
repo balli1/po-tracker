@@ -3,6 +3,7 @@ import { PurchaseOrdersTable } from "../features/purchase-orders/components/Purc
 import { getPurchaseOrders } from "../features/purchase-orders/services/purchaseOrderService";
 import type { PurchaseOrder } from "../features/purchase-orders/types/purchaseOrder";
 import { BusinessUnit, ConfirmCode } from "../features/purchase-orders/types/purchaseOrder";
+import { PurchaseOrderDetailsDrawer } from "../features/purchase-orders/components/PurchaseOrderDetailsDrawer";
 
 export function DispatchedPOsPage() {
   const [purchaseOrders, setPurchaseOrders] = useState<PurchaseOrder[]>([]);
@@ -13,6 +14,8 @@ export function DispatchedPOsPage() {
   const [selectedBusinessUnit, setSelectedBusinessUnit] = useState<string>("all");
   const [selectedDateRange, setSelectedDateRange] = useState<string>("all");
   const [selectedAssignee, setSelectedAssignee] = useState<string>("all");
+
+  const [selectedPurchaseOrder, setSelectedPurchaseOrder] = useState<PurchaseOrder | null>(null);
 
   useEffect(() => {
     async function loadPurchaseOrders() {
@@ -172,7 +175,39 @@ export function DispatchedPOsPage() {
           Clear
         </button>
       </div>
-        <PurchaseOrdersTable purchaseOrders={filteredPurchaseOrders} />
+
+      <div className="mb-3 flex items-center justify-between text-sm text-gray-600">
+        <span>
+          Showing{" "}
+          <span className="font-medium text-gray-900">
+            {filteredPurchaseOrders.length}
+          </span>{" "}
+          of{" "}
+          <span className="font-medium text-gray-900">
+            {purchaseOrders.length}
+          </span>{" "}
+          purchase orders
+        </span>
+
+        <span>
+          <span className="font-medium text-gray-900">
+            {filteredPurchaseOrders.reduce(
+              (total, po) => total + po.lines.length,
+              0
+            )}
+          </span>{" "}
+          line items shown
+        </span>
+      </div>
+        <PurchaseOrdersTable
+          purchaseOrders={filteredPurchaseOrders}
+          onRowClick={setSelectedPurchaseOrder}
+        />
+
+        <PurchaseOrderDetailsDrawer
+          purchaseOrder={selectedPurchaseOrder}
+          onClose={() => setSelectedPurchaseOrder(null)}
+        />
     </main>
   );
 }

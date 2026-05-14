@@ -11,10 +11,12 @@ import {
   
   interface PurchaseOrdersTableProps {
     purchaseOrders: PurchaseOrder[];
+    onRowClick: (purchaseOrder: PurchaseOrder) => void;
   }
   
   export function PurchaseOrdersTable({
     purchaseOrders,
+    onRowClick,
   }: PurchaseOrdersTableProps) {
     const [sorting, setSorting] = useState<SortingState>([]);
   
@@ -60,7 +62,11 @@ import {
   
           <tbody className="divide-y divide-gray-200">
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="hover:bg-gray-50">
+              <tr
+                key={row.id}
+                className="cursor-pointer hover:bg-gray-50"
+                onClick={() => onRowClick(row.original)}
+                >
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="px-4 py-3 text-gray-700">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
