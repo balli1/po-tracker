@@ -27,6 +27,45 @@ export function DispatchedPOsPage() {
     loadPurchaseOrders();
   }, []);
 
+  function handleAddComment(poNumber: string, message: string) {
+    const newComment = {
+      id: crypto.randomUUID(),
+      author: "Current User",
+      message,
+      createdAt: new Date().toISOString(),
+    };
+  
+    setPurchaseOrders((currentPurchaseOrders) =>
+      currentPurchaseOrders.map((po) => {
+        if (po.poNumber !== poNumber) {
+          return po;
+        }
+  
+        return {
+          ...po,
+          comments: [...(po.comments ?? []), newComment],
+        };
+      })
+    );
+  
+    setSelectedPurchaseOrder((currentSelectedPurchaseOrder) => {
+      if (
+        !currentSelectedPurchaseOrder ||
+        currentSelectedPurchaseOrder.poNumber !== poNumber
+      ) {
+        return currentSelectedPurchaseOrder;
+      }
+  
+      return {
+        ...currentSelectedPurchaseOrder,
+        comments: [
+          ...(currentSelectedPurchaseOrder.comments ?? []),
+          newComment,
+        ],
+      };
+    });
+  }
+
   const assigneeOptions = Array.from(
     new Set(
       purchaseOrders
@@ -207,6 +246,7 @@ export function DispatchedPOsPage() {
         <PurchaseOrderDetailsDrawer
           purchaseOrder={selectedPurchaseOrder}
           onClose={() => setSelectedPurchaseOrder(null)}
+          onAddComment={handleAddComment}
         />
     </main>
   );

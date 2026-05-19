@@ -51,17 +51,41 @@ export interface PurchaseOrderLine {
     description: string;
     quantity: number;
     unitPrice: number;
+    uom: string;
     respondedDateTime: Date;
     hdrStatus?: HdrStatus;
     lineStatus?: LineStatus;
+    shipCodeDesc?: string;
     shipDate: Date;
 }
+
+export interface VendorInfo {
+    name: string;
+    addressLine1: string;
+    addressLine2?: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    phone: string;
+    email?: string;
+  }
+  
+  export interface ShippingInfo {
+    facilityName: string;
+    addressLine1: string;
+    addressLine2?: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  }
 
 export interface PurchaseOrder {
     poNumber: string;
     poDate: string;
 
     vendorName: string;
+    vendorInfo: VendorInfo;
+    shippingInfo: ShippingInfo;
 
     businessUnit: BusinessUnit;
 
