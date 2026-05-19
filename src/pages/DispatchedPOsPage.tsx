@@ -4,6 +4,7 @@ import { getPurchaseOrders } from "../features/purchase-orders/services/purchase
 import type { PurchaseOrder } from "../features/purchase-orders/types/purchaseOrder";
 import { BusinessUnit, ConfirmCode } from "../features/purchase-orders/types/purchaseOrder";
 import { PurchaseOrderDetailsDrawer } from "../features/purchase-orders/components/PurchaseOrderDetailsDrawer";
+import { filterPurchaseOrders } from "../features/purchase-orders/utils/filterPurchaseOrders";
 
 export function DispatchedPOsPage() {
   const [purchaseOrders, setPurchaseOrders] = useState<PurchaseOrder[]>([]);
@@ -74,58 +75,12 @@ export function DispatchedPOsPage() {
     )
   ).sort();
 
-  const filteredPurchaseOrders = purchaseOrders.filter((po) => {
-    const search = searchTerm.toLowerCase();
-  
-    const matchesSearch =
-      po.poNumber.toLowerCase().includes(search) ||
-      po.vendorName.toLowerCase().includes(search);
-  
-    const matchesConfirmCode =
-      selectedConfirmCode === "all" || po.confirmCode === selectedConfirmCode;
-  
-    const matchesBusinessUnit =
-      selectedBusinessUnit === "all" || po.businessUnit === selectedBusinessUnit;
-  
-    const matchesAssignee =
-      selectedAssignee === "all" || po.assignedTo === selectedAssignee;
-  
-    const poDate = new Date(po.poDate);
-    const today = new Date();
-      
-    const startOfToday = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate()
-    );
-      
-    let matchesDateRange = true;
-      
-    if (selectedDateRange === "today") {
-      matchesDateRange = poDate >= startOfToday;
-    }
-      
-    if (selectedDateRange === "last7") {
-      const sevenDaysAgo = new Date(startOfToday);
-      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-      
-      matchesDateRange = poDate >= sevenDaysAgo;
-    }
-      
-    if (selectedDateRange === "last30") {
-      const thirtyDaysAgo = new Date(startOfToday);
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-      
-      matchesDateRange = poDate >= thirtyDaysAgo;
-    }   
-
-    return (
-      matchesSearch &&
-      matchesConfirmCode &&
-      matchesBusinessUnit &&
-      matchesAssignee &&
-      matchesDateRange
-    );
+  const filteredPurchaseOrders = filterPurchaseOrders(purchaseOrders, {
+    searchTerm,
+    selectedDateRange,
+    selectedConfirmCode,
+    selectedAssignee,
+    selectedBusinessUnit,
   });
 
   if (isLoading) {
