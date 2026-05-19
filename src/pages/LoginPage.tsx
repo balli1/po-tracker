@@ -1,4 +1,4 @@
-import { useState } from "React";
+import { useState } from "react";
 import northwellLogo from "../assets/northwell-logo.png";
 
 interface LoginPageProps {

@@ -5,6 +5,10 @@ import type { PurchaseOrder } from "../features/purchase-orders/types/purchaseOr
 import { BusinessUnit, ConfirmCode } from "../features/purchase-orders/types/purchaseOrder";
 import { PurchaseOrderDetailsDrawer } from "../features/purchase-orders/components/PurchaseOrderDetailsDrawer";
 import { filterPurchaseOrders } from "../features/purchase-orders/utils/filterPurchaseOrders";
+import {
+  addCommentToPurchaseOrders,
+  createComment,
+} from "../features/purchase-orders/utils/addCommentToPurchaseOrders";
 
 export function DispatchedPOsPage() {
   const [purchaseOrders, setPurchaseOrders] = useState<PurchaseOrder[]>([]);
@@ -29,10 +33,16 @@ export function DispatchedPOsPage() {
   }, []);
 
   function handleAddComment(poNumber: string, message: string) {
+    const trimmedMessage = message.trim();
+  
+    if (!trimmedMessage) {
+      return;
+    }
+  
     const newComment = {
-      id: crypto.randomUUID(),
+      id: `comment-${Date.now()}`,
       author: "Current User",
-      message,
+      message: trimmedMessage,
       createdAt: new Date().toISOString(),
     };
   
@@ -59,10 +69,7 @@ export function DispatchedPOsPage() {
   
       return {
         ...currentSelectedPurchaseOrder,
-        comments: [
-          ...(currentSelectedPurchaseOrder.comments ?? []),
-          newComment,
-        ],
+        comments: [...(currentSelectedPurchaseOrder.comments ?? []), newComment],
       };
     });
   }
