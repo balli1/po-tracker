@@ -133,7 +133,7 @@ export function DispatchedPOsPage() {
   }
 
   return (
-    <main className="p-6">
+    <main className="min-w-0 overflow-x-hidden p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-semibold text-gray-900">
           Dispatched POs
@@ -239,10 +239,12 @@ export function DispatchedPOsPage() {
           line items shown
         </span>
       </div>
+      <div className="w-full min-w-0">
         <PurchaseOrdersTable
           purchaseOrders={filteredPurchaseOrders}
           onRowClick={setSelectedPurchaseOrder}
         />
+      </div>
 
         <PurchaseOrderDetailsDrawer
           purchaseOrder={selectedPurchaseOrder}

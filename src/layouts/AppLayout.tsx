@@ -45,7 +45,9 @@ export function AppLayout() {
         </div>
       </header>
 
-      <Outlet />
+      <div className="min-w-0">
+        <Outlet />
+      </div>
     </div>
   );
 }

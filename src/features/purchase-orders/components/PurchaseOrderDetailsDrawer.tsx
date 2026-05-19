@@ -38,8 +38,14 @@ export function PurchaseOrderDetailsDrawer({
   } 
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/20 transition-opacity duration-200">
-      <aside className="h-full w-full max-w-xl animate-[slideIn_400ms_ease-out] overflow-y-auto bg-white p-4 shadow-xl sm:max-w-xl sm:p-6">
+    <div 
+      className="fixed inset-0 z-50 flex justify-end bg-black/20 transition-opacity duration-200"
+      onClick={onClose}
+    >
+      <aside
+        className="h-full w-full animate-[slideIn_400ms_ease-out] overflow-y-auto bg-white p-4 shadow-xl sm:max-w-xl sm:p-6"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="mb-6 flex items-start justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">

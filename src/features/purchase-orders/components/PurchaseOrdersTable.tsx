@@ -32,8 +32,8 @@ import {
     });
   
     return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
-      <table className="min-w-[1200px] divide-y divide-gray-200 text-sm">
+      <div className="w-full overflow-x-auto rounded-lg border border-gray-200 bg-white">
+        <table className="w-full min-w-[1250px] divide-y divide-gray-200 text-sm">
           <thead className="bg-gray-50">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
