@@ -142,7 +142,8 @@ export function DispatchedPOsPage() {
           Track purchase orders requiring vendor confirmation and follow-up.
         </p>
       </div>
-      <div className="mb-4 grid gap-3 rounded-lg border border-gray-200 bg-white p-4 md:grid-cols-6">        <input
+      <div className="mb-4 grid gap-3 rounded-lg border border-gray-200 bg-white p-4 sm:grid-cols-2 xl:grid-cols-6">        
+      <input
           type="text"
           placeholder="Search PO or vendor"
           value={searchTerm}

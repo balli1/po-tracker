@@ -9,3 +9,58 @@
       transform: translateX(0);
     }
   }
+
+.printable-po {
+  display: none;
+}
+
+@media print {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: white;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #printable-po,
+  #printable-po * {
+    visibility: visible;
+  }
+
+  #printable-po {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: white;
+    z-index: 9999;
+  }
+
+  #printable-po > div {
+    width: 10in !important;
+    max-height: 7in;
+    overflow: hidden;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  table,
+  tr,
+  td,
+  th {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  @page {
+    size: letter landscape;
+    margin: 0.25in;
+  }
+}
