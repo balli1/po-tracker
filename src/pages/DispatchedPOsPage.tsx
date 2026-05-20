@@ -9,6 +9,7 @@ import {
   addCommentToPurchaseOrders,
   createComment,
 } from "../features/purchase-orders/utils/addCommentToPurchaseOrders";
+import { ChevronDown } from "lucide-react"; 
 
 export function DispatchedPOsPage() {
   const [purchaseOrders, setPurchaseOrders] = useState<PurchaseOrder[]>([]);
@@ -33,30 +34,18 @@ export function DispatchedPOsPage() {
   }, []);
 
   function handleAddComment(poNumber: string, message: string) {
-    const trimmedMessage = message.trim();
+    const newComment = createComment(message);
   
-    if (!trimmedMessage) {
+    if (!newComment) {
       return;
     }
   
-    const newComment = {
-      id: `comment-${Date.now()}`,
-      author: "Current User",
-      message: trimmedMessage,
-      createdAt: new Date().toISOString(),
-    };
-  
     setPurchaseOrders((currentPurchaseOrders) =>
-      currentPurchaseOrders.map((po) => {
-        if (po.poNumber !== poNumber) {
-          return po;
-        }
-  
-        return {
-          ...po,
-          comments: [...(po.comments ?? []), newComment],
-        };
-      })
+      addCommentToPurchaseOrders(
+        currentPurchaseOrders,
+        poNumber,
+        newComment
+      )
     );
   
     setSelectedPurchaseOrder((currentSelectedPurchaseOrder) => {
@@ -69,7 +58,10 @@ export function DispatchedPOsPage() {
   
       return {
         ...currentSelectedPurchaseOrder,
-        comments: [...(currentSelectedPurchaseOrder.comments ?? []), newComment],
+        comments: [
+          ...(currentSelectedPurchaseOrder.comments ?? []),
+          newComment,
+        ],
       };
     });
   }
@@ -104,19 +96,20 @@ export function DispatchedPOsPage() {
           Track purchase orders requiring vendor confirmation and follow-up.
         </p>
       </div>
-      <div className="mb-4 grid gap-3 rounded-lg border border-gray-200 bg-white p-4 sm:grid-cols-2 xl:grid-cols-6">        
-      <input
-          type="text"
-          placeholder="Search PO or vendor"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
-        />
+      <div className="mb-4 grid gap-3 rounded-lg border border-gray-200 bg-white p-4 sm:grid-cols-2 xl:grid-cols-6">
+    <input
+      type="text"
+      placeholder="Search PO or vendor"
+      value={searchTerm}
+      onChange={(event) => setSearchTerm(event.target.value)}
+      className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+    />
 
+      <div className="relative w-full">
         <select
           value={selectedDateRange}
           onChange={(event) => setSelectedDateRange(event.target.value)}
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+          className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-3 pr-10 text-sm"
         >
           <option value="all">All Dates</option>
           <option value="today">Today</option>
@@ -124,12 +117,20 @@ export function DispatchedPOsPage() {
           <option value="last30">Last 30 Days</option>
         </select>
 
+        <ChevronDown
+          size={16}
+          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+        />
+      </div>
+
+      <div className="relative w-full">
         <select
           value={selectedConfirmCode}
           onChange={(event) => setSelectedConfirmCode(event.target.value)}
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+          className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-3 pr-10 text-sm"
         >
           <option value="all">All Confirm Codes</option>
+
           {Object.values(ConfirmCode).map((code) => (
             <option key={code} value={code}>
               {code}
@@ -137,12 +138,20 @@ export function DispatchedPOsPage() {
           ))}
         </select>
 
+        <ChevronDown
+          size={16}
+          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+        />
+      </div>
+
+      <div className="relative w-full">
         <select
           value={selectedAssignee}
           onChange={(event) => setSelectedAssignee(event.target.value)}
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+          className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-3 pr-10 text-sm"
         >
           <option value="all">All Assignees</option>
+
           {assigneeOptions.map((assignee) => (
             <option key={assignee} value={assignee}>
               {assignee}
@@ -150,12 +159,20 @@ export function DispatchedPOsPage() {
           ))}
         </select>
 
+        <ChevronDown
+          size={16}
+          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+        />
+      </div>
+
+      <div className="relative w-full">
         <select
           value={selectedBusinessUnit}
           onChange={(event) => setSelectedBusinessUnit(event.target.value)}
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+          className="w-full appearance-none rounded-md border border-gray-300 py-2 pl-3 pr-10 text-sm"
         >
           <option value="all">All Business Units</option>
+
           {Object.values(BusinessUnit).map((unit) => (
             <option key={unit} value={unit}>
               {unit}
@@ -163,20 +180,26 @@ export function DispatchedPOsPage() {
           ))}
         </select>
 
-        <button
-          type="button"
-          onClick={() => {
-            setSearchTerm("");
-            setSelectedDateRange("all");
-            setSelectedConfirmCode("all");
-            setSelectedAssignee("all");
-            setSelectedBusinessUnit("all");
-          }}
-          className="rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          Clear
-        </button>
+        <ChevronDown
+          size={16}
+          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+        />
       </div>
+
+      <button
+        type="button"
+        onClick={() => {
+          setSearchTerm("");
+          setSelectedDateRange("all");
+          setSelectedConfirmCode("all");
+          setSelectedAssignee("all");
+          setSelectedBusinessUnit("all");
+        }}
+        className="rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+      >
+        Clear
+      </button>
+    </div>
 
       <div className="mb-3 flex items-center justify-between text-sm text-gray-600">
         <span>

@@ -16,6 +16,10 @@ export function PurchaseOrderDetailsDrawer({
   const commentsEndRef = useRef<HTMLDivElement | null>(null);
 
   function handleAddComment() {
+    if (!purchaseOrder) {
+      return;
+    }
+    
     const trimmedComment = commentText.trim();
   
     if (!trimmedComment) {
@@ -59,9 +63,10 @@ export function PurchaseOrderDetailsDrawer({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-gray-300 px-3 py-1 text-sm text-gray-700 hover:bg-gray-50"
+            aria-label="Close details drawer"
+            className="rounded-full p-3 text-gray-500 hover:bg-gray-100 hover:text-gray-900"
           >
-            Close
+            ✕
           </button>
         </div>
 
@@ -175,7 +180,7 @@ export function PurchaseOrderDetailsDrawer({
             EDI / Line Details
           </h3>
 
-          <div className="space-y-3">
+          <div className="max-h-96 space-y-3 overflow-y-auto pr-1">
             {purchaseOrder.lines.map((line) => (
               <div
                 key={line.vendorCatalogId}
