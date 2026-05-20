@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+# PO Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PO Tracker is a frontend prototype for managing dispatched purchase orders, vendor confirmations, and procurement follow-up workflows.
 
-Currently, two official plugins are available:
+The application was built as a React + TypeScript project focused on enterprise UX patterns, responsive design, workflow management, and frontend architecture.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+# Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Authentication
+- Mock login flow
+- Protected routes
+- Logout workflow
 
-## Expanding the ESLint configuration
+## Dashboard
+- Purchase order summary cards
+- Recent activity feed
+- POs requiring attention
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Dispatched Purchase Orders
+- Responsive enterprise-style data table
+- Search and filtering
+- Date range filtering
+- Confirm code filtering
+- Assignee filtering
+- Business unit filtering
+- Dynamic result counts
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Purchase Order Details Drawer
+- PO details
+- Work status
+- Vendor information
+- EDI / line details
+- Comments workflow
+- Printable purchase order / shipping label
+- Slide-out drawer interactions
+- Click-outside-to-close behavior
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Comments
+- Add comments to purchase orders
+- Auto-scroll to newest comment
+- Empty comment validation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Responsive Design
+- Mobile-friendly layouts
+- Responsive filters
+- Horizontal table scrolling
+- Responsive drawer layouts
+
+## Printing
+- Printable landscape purchase order layout
+- Shipping-label-inspired print preview
+- Single-page print optimization
+
+---
+
+# Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- TanStack Table
+- Vitest
+- Recharts
+
+---
+
+# Getting Started
+
+## Install dependencies
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Start development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Run tests
+
+```bash
+npm test
 ```
