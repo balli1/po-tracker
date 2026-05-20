@@ -6,6 +6,38 @@ The application was built as a React + TypeScript project focused on enterprise 
 
 ---
 
+# Screenshots
+
+## Login
+
+![Login](./README-assets/login.png)
+
+---
+
+## Dashboard
+
+![Dashboard](./README-assets/dashboard.png)
+
+---
+
+## Dispatched Purchase Orders
+
+![Dispatched Purchase Orders](./README-assets/dispatched-pos.png)
+
+---
+
+## Purchase Order Details Drawer
+
+![Drawer](./README-assets/drawer.png)
+
+---
+
+## Print Preview
+
+![Print Preview](./README-assets/print-preview.png)
+
+---
+
 # Features
 
 ## Authentication
