@@ -102,8 +102,8 @@ export function DashboardPage() {
           </p>
         </div>
 
-        <div className="h-72">
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="h-72 min-h-72 min-w-0">
+          <ResponsiveContainer width="100%" height={288}>
             <BarChart data={confirmCodeChartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="status" />
